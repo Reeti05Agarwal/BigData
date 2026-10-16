@@ -70,8 +70,11 @@ class Log:
         self.emit(ts, host, f"Accepted password for {user} from {ip} port {port} ssh2")
 
     def probe(self, ts, host, user, ip, valid):
+        """One throwaway password per name: sshd logs valid and invalid names differently."""
         port = random.randint(30000, 65000)
-        if not valid:
+        if valid:
+            self.emit(ts, host, f"Failed password for {user} from {ip} port {port} ssh2")
+        else:
             self.emit(ts, host, f"Invalid user {user} from {ip}")
         self.emit(ts + timedelta(seconds=1), host, f"Connection closed by {ip} port {port} [preauth]")
 

@@ -1,4 +1,4 @@
-"""Scalability benchmark: run parse -> features -> rules -> KMeans at 1x, 5x and 10x data volume."""
+"""Scalability benchmark: run parse -> features -> rules -> KMeans at growing data volumes (default up to 100x)."""
 import argparse
 import time
 
@@ -42,7 +42,7 @@ def run_once(spark, scale):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--scales", default="1,5,10")
+    ap.add_argument("--scales", default="1,10,50,100")
     args = ap.parse_args()
     spark = get_spark("auth-benchmark")
     run_once(spark, 1)  # warm-up: JVM, code generation

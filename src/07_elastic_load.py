@@ -24,7 +24,7 @@ def bulk(es, index, df, id_col=None):
     df = df.astype(object).where(df.notna(), None)
     actions = ({"_index": index, "_source": r, **({"_id": r[id_col]} if id_col else {})}
                for r in df.to_dict("records"))
-    ok, _ = helpers.bulk(es, actions, chunk_size=5000, request_timeout=120)
+    ok, _ = helpers.bulk(es.options(request_timeout=120), actions, chunk_size=5000)
     print(f"{index}: {ok:,} docs")
 
 
@@ -70,7 +70,7 @@ def main():
         create_data_views()
     except requests.RequestException as exc:
         print(f"Kibana not reachable ({exc}); create the data views by hand")
-    print(f"Open Kibana at {config.KIBANA_URL} and set the time range to Sep 2026.")
+    print("Open Kibana at http://localhost:5601 and set the time range to Sep 2026.")
 
 
 if __name__ == "__main__":

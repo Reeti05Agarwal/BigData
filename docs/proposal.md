@@ -17,7 +17,7 @@ I've rewritten your proposal to match the CA-3 rubric. **One thing to check firs
 **Detecting Coordinated Multi-Stage Attacks in Authentication Logs Using Kafka, Spark, MLlib, Neo4j and Kibana**
 
 ### Abstract
-This project builds a distributed batch and streaming pipeline that detects attacks in large SSH authentication logs. Kafka streams the log events. Spark Structured Streaming parses them and builds per-IP features over sliding time windows. Fixed-threshold rules are compared with Spark MLlib models (PCA, then KMeans and Random Forest). The goal is to show which stealthy attacks the rules miss, such as password spraying and low-and-slow brute force. Each detection is mapped to a MITRE ATT&CK technique. Results go to Elasticsearch for a live Kibana SOC dashboard and to Neo4j, where Louvain community detection finds coordinated botnet campaigns. Scalability is measured at 1x, 5x and 10x data volume.
+This project builds a distributed batch and streaming pipeline that detects attacks in large SSH authentication logs. Kafka streams the log events. Spark Structured Streaming parses them and builds per-IP features over sliding time windows. Fixed-threshold rules are compared with Spark MLlib models (PCA, then KMeans and Random Forest). The goal is to show which stealthy attacks the rules miss, such as password spraying and low-and-slow brute force. Each detection is mapped to a MITRE ATT&CK technique. Results go to Elasticsearch for a live Kibana SOC dashboard and to Neo4j, where Louvain community detection finds coordinated botnet campaigns. Scalability is measured at 1x, 10x, 50x and 100x data volume.
 
 ### Problem Statement
 Authentication logs grow to millions of events a day. Static rules fire false alarms, miss attackers who stay just under the threshold, and look at each IP alone, so they can't link the IPs in a distributed campaign. A SOC needs a pipeline that scales with the data, works in near real time, tells attack types apart and shows how attackers are connected.
@@ -31,7 +31,7 @@ Authentication logs grow to millions of events a day. Static rules fire false al
 6. Show live insights in a Kibana dashboard and measure scalability.
 
 ### Dataset
-- **Loghub OpenSSH logs** (real SSH auth logs, about 655K lines), replicated to 5x and 10x for the scale tests.
+- **Loghub OpenSSH logs** (real SSH auth logs, about 655K lines), replicated up to 100x for the scale tests.
 - **Ground truth:** a Python generator injects labelled synthetic attacks of each type into the real logs at known times and IPs. This gives true labels for precision, recall and F1.
 
 ### Tech Stack
@@ -60,7 +60,7 @@ Failed and successful login counts, number of distinct usernames tried, fail-to-
 5. **ML detection:** PCA, then KMeans (unsupervised) and Random Forest (supervised, trained on the injected labels).
 6. **Forecasting:** Holt-Winters on hourly failed logins, flagging values outside the forecast band.
 7. **Graph:** load `(:IP)-[:ATTEMPTED]->(:User)` and `(:IP)-[:TARGETED]->(:Host)` into Neo4j, then run Louvain and PageRank.
-8. **Evaluate:** precision, recall and F1 for rules vs. RF vs. KMeans, plus runtime and throughput at 1x, 5x and 10x.
+8. **Evaluate:** precision, recall and F1 for rules vs. RF vs. KMeans, plus runtime and throughput at 1x, 10x, 50x and 100x.
 9. **Visualize:** Kibana dashboard, Neo4j Browser graph, PCA scatter plot and confusion matrices.
 
 ### Visualizations and Insights

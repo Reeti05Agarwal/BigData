@@ -53,7 +53,7 @@ def main():
         louvain = s.run("CALL gds.louvain.write('auth', {writeProperty: 'community'}) "
                         "YIELD communityCount, modularity").single()
         s.run("CALL gds.pageRank.write('auth', {writeProperty: 'pagerank'}) YIELD nodePropertiesWritten").consume()
-        s.run("CALL gds.graph.drop('auth')").consume()
+        s.run("CALL gds.graph.drop('auth') YIELD graphName").consume()
         print(f"Louvain: {louvain['communityCount']} communities, modularity {louvain['modularity']:.3f}")
 
         campaigns = s.run("""

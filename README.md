@@ -24,7 +24,7 @@ auth.log ──► Kafka topic "auth-logs" ──► Spark Structured Streaming 
 | Time-series anomaly detection | statsmodels Holt-Winters | [src/05_forecast.py](src/05_forecast.py) |
 | Attack graph, campaigns | Neo4j + GDS | [src/06_neo4j_graph.py](src/06_neo4j_graph.py) |
 | SOC dashboard | Elasticsearch + Kibana | [src/07_elastic_load.py](src/07_elastic_load.py) |
-| Scalability (1x / 5x / 10x) | Spark | [src/08_benchmark.py](src/08_benchmark.py) |
+| Scalability (1x / 10x / 50x / 100x) | Spark | [src/08_benchmark.py](src/08_benchmark.py) |
 
 ## Attack types and ground truth
 
@@ -102,7 +102,7 @@ or merge the real Loghub log.
 | `detections.csv`, `figures/top_risk_ips.png` | SOC triage list with MITRE technique and risk score |
 | `hourly_forecast.csv`, `figures/forecast_anomalies.png` | Holt-Winters baseline and anomalous hours |
 | `campaigns.csv`, `central_ips.csv`, `campaign_recovery.csv` | Louvain campaigns, PageRank, recovery of the true campaigns |
-| `benchmark.csv`, `figures/scalability.png` | Runtime at 1x, 5x, 10x |
+| `benchmark.csv`, `figures/scalability.png` | Runtime at 1x, 10x, 50x, 100x |
 
 The Spark UI at http://localhost:4040 shows jobs, stages and the DAG while a job runs. Take a screenshot for the report.
 
