@@ -1,0 +1,10 @@
+pyspark==3.5.3
+pandas>=2.0
+numpy>=1.24
+pyarrow>=14
+matplotlib>=3.7
+statsmodels>=0.14
+kafka-python>=2.0.3
+elasticsearch>=8.13,<9
+neo4j>=5.20
+requests>=2.31

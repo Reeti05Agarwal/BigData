@@ -1,0 +1,10 @@
+data/raw/
+data/parquet/
+data/checkpoints/
+.ivy2/
+__pycache__/
+*.pyc
+.venv/
+spark-warehouse/
+metastore_db/
+derby.log
