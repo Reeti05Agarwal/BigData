@@ -102,6 +102,8 @@ or merge the real Loghub log.
 | `detections.csv`, `figures/top_risk_ips.png` | SOC triage list with MITRE technique and risk score |
 | `hourly_forecast.csv`, `figures/forecast_anomalies.png` | Holt-Winters baseline and anomalous hours |
 | `campaigns.csv`, `central_ips.csv`, `campaign_recovery.csv` | Louvain campaigns, PageRank, recovery of the true campaigns |
+| `linked_campaigns.csv` | Attacker communities that share target accounts (multi-stage links, e.g. scanners → botnet) |
+| `metrics_with_graph.csv`, `figures/detection_with_graph.png` | Graph-assisted detection: rules vs. KMeans vs. KMeans + Neo4j |
 | `benchmark.csv`, `figures/scalability.png` | Runtime at 1x, 10x, 50x, 100x |
 
 The Spark UI at http://localhost:4040 shows jobs, stages and the DAG while a job runs. Take a screenshot for the report.
