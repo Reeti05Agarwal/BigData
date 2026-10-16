@@ -1,52 +1,37 @@
 ip,risk_score,predicted_type,technique_id,technique_name,rule_flag,ml_flag,rule_type,cluster,n_events,n_failed,distinct_users,max_fails_5min,success_after_fails,first_seen,last_seen
-212.111.182.189,85.0,credential_stuffing,T1110.004,Brute Force: Credential Stuffing,True,True,user_enumeration,3,296,150,150,17,False,2026-09-11 13:56:00,2026-09-11 14:46:38
-110.228.33.86,85.0,credential_stuffing,T1110.004,Brute Force: Credential Stuffing,True,True,user_enumeration,3,294,150,150,16,False,2026-09-12 21:21:39,2026-09-12 22:11:41
-110.68.217.91,85.0,credential_stuffing,T1110.004,Brute Force: Credential Stuffing,True,True,user_enumeration,3,291,150,150,17,False,2026-09-11 12:43:46,2026-09-11 13:34:14
-212.233.134.28,85.0,user_enumeration,T1087,Account Discovery,True,True,user_enumeration,1,74,0,74,0,False,2026-09-03 17:45:44,2026-09-03 18:10:30
-23.15.60.57,85.0,user_enumeration,T1087,Account Discovery,True,True,user_enumeration,1,72,0,72,0,False,2026-09-03 11:49:39,2026-09-03 12:12:41
-112.22.10.120,85.0,credential_stuffing,T1110.004,Brute Force: Credential Stuffing,True,True,user_enumeration,3,296,150,150,16,False,2026-09-12 23:43:36,2026-09-13 00:31:54
-112.218.9.158,85.0,credential_stuffing,T1110.004,Brute Force: Credential Stuffing,True,True,user_enumeration,3,294,150,150,16,False,2026-09-11 07:35:16,2026-09-11 08:25:29
-45.187.212.210,85.0,credential_stuffing,T1110.004,Brute Force: Credential Stuffing,True,True,user_enumeration,3,294,150,150,17,False,2026-09-11 11:46:21,2026-09-11 12:35:36
-201.133.122.77,85.0,credential_stuffing,T1110.004,Brute Force: Credential Stuffing,True,True,user_enumeration,3,294,150,150,16,False,2026-09-12 10:45:03,2026-09-12 11:35:33
-37.88.146.149,85.0,credential_stuffing,T1110.004,Brute Force: Credential Stuffing,True,True,user_enumeration,3,296,150,150,15,False,2026-09-12 09:47:10,2026-09-12 10:38:02
-218.160.54.144,85.0,user_enumeration,T1087,Account Discovery,True,True,user_enumeration,1,75,0,75,0,False,2026-09-03 17:25:40,2026-09-03 17:51:07
-61.11.192.116,84.2,post_compromise,T1078,Valid Accounts,True,True,post_compromise,4,13,12,1,12,True,2026-09-09 16:00:15,2026-09-09 16:03:09
-177.104.132.90,84.2,post_compromise,T1078,Valid Accounts,True,True,post_compromise,4,13,12,1,11,True,2026-09-11 14:09:51,2026-09-11 14:12:33
-46.44.229.166,70.8,brute_force,T1110.001,Brute Force: Password Guessing,True,True,brute_force,4,607,607,1,153,False,2026-09-07 19:14:40,2026-09-07 19:34:53
-110.220.53.49,70.8,brute_force,T1110.001,Brute Force: Password Guessing,True,True,brute_force,4,767,767,1,162,False,2026-09-06 23:30:02,2026-09-06 23:55:07
-222.174.232.46,70.8,brute_force,T1110.001,Brute Force: Password Guessing,True,True,brute_force,4,376,376,1,150,False,2026-09-01 01:35:24,2026-09-01 01:48:00
-190.182.47.154,70.8,brute_force,T1110.001,Brute Force: Password Guessing,True,True,brute_force,4,402,402,1,152,False,2026-09-14 15:27:59,2026-09-14 15:41:27
-112.162.59.121,70.8,brute_force,T1110.001,Brute Force: Password Guessing,True,True,brute_force,4,432,432,1,151,False,2026-09-03 02:31:27,2026-09-03 02:45:59
-212.26.37.74,63.6,post_compromise,T1078,Valid Accounts,False,True,,4,19,16,9,2,True,2026-09-08 01:47:47,2026-09-08 04:05:50
-212.26.37.130,63.6,post_compromise,T1078,Valid Accounts,False,True,,4,19,16,9,2,True,2026-09-08 01:52:25,2026-09-08 04:11:37
-212.26.37.111,60.0,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,35,35,25,2,False,2026-09-05 00:22:50,2026-09-07 19:11:23
-37.248.114.130,60.0,user_enumeration,T1087,Account Discovery,False,True,,1,72,0,72,0,False,2026-09-03 22:11:53,2026-09-04 00:07:02
-195.39.131.204,60.0,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,42,42,25,2,False,2026-09-05 00:30:48,2026-09-07 19:51:53
-212.26.37.51,60.0,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,25,25,21,2,False,2026-09-05 01:02:02,2026-09-07 19:53:17
-177.141.3.215,60.0,user_enumeration,T1087,Account Discovery,False,True,,1,72,0,72,0,False,2026-09-03 07:59:18,2026-09-03 09:54:13
-77.88.205.136,60.0,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,30,30,25,1,False,2026-09-05 00:13:05,2026-09-07 19:33:43
-185.75.11.56,60.0,user_enumeration,T1087,Account Discovery,False,True,,1,72,0,72,0,False,2026-09-03 20:22:01,2026-09-03 22:13:13
-195.39.131.5,59.3,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,24,24,19,1,False,2026-09-05 00:00:52,2026-09-07 19:11:41
-77.88.205.223,59.3,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,24,24,19,3,False,2026-09-05 06:07:54,2026-09-07 19:28:31
-212.26.37.125,59.3,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,29,29,19,2,False,2026-09-05 00:48:17,2026-09-07 19:18:20
-212.26.37.195,59.3,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,25,25,19,2,False,2026-09-05 00:57:58,2026-09-07 13:27:13
-195.39.131.202,59.3,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,25,25,19,2,False,2026-09-05 18:29:08,2026-09-07 18:47:00
-77.88.205.229,59.3,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,23,23,19,2,False,2026-09-05 01:29:03,2026-09-07 19:04:06
-222.13.8.177,59.2,post_compromise,T1078,Valid Accounts,False,True,,4,13,12,1,7,True,2026-09-05 15:18:56,2026-09-05 15:21:52
-77.88.205.5,58.5,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,21,21,18,2,False,2026-09-05 00:23:30,2026-09-07 18:09:43
-195.39.131.242,58.5,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,20,20,18,1,False,2026-09-05 01:45:00,2026-09-07 19:26:20
-195.39.131.47,58.5,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,29,29,18,2,False,2026-09-05 00:30:20,2026-09-07 18:31:36
-77.88.205.242,57.8,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,20,20,17,1,False,2026-09-05 01:03:13,2026-09-07 19:58:12
-195.39.131.162,57.8,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,20,20,17,1,False,2026-09-05 00:49:52,2026-09-07 18:02:09
-77.88.205.212,57.0,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,19,19,16,2,False,2026-09-05 00:12:08,2026-09-07 18:44:16
-77.88.205.247,56.3,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,18,18,15,2,False,2026-09-05 01:09:55,2026-09-07 19:43:55
-212.26.37.140,55.5,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,15,15,14,1,False,2026-09-05 00:47:08,2026-09-07 19:45:50
-212.26.37.42,55.5,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,18,18,14,1,False,2026-09-05 00:49:40,2026-09-07 07:41:01
-212.26.37.252,54.8,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,18,18,13,2,False,2026-09-05 01:05:45,2026-09-07 12:58:35
-58.137.230.12,45.8,low_and_slow,T1110.001,Brute Force: Password Guessing,False,True,,0,538,538,1,2,False,2026-09-03 20:48:07,2026-09-06 02:11:22
-103.193.146.100,45.8,low_and_slow,T1110.001,Brute Force: Password Guessing,False,True,,0,453,453,1,2,False,2026-09-06 18:55:41,2026-09-08 15:50:39
-139.192.231.168,45.8,low_and_slow,T1110.001,Brute Force: Password Guessing,False,True,,0,591,591,1,2,False,2026-09-11 19:31:51,2026-09-14 06:35:19
-185.244.191.170,45.8,low_and_slow,T1110.001,Brute Force: Password Guessing,False,True,,0,512,512,1,2,False,2026-09-11 04:33:13,2026-09-13 08:40:59
-61.149.78.240,45.8,low_and_slow,T1110.001,Brute Force: Password Guessing,False,True,,0,581,581,1,2,False,2026-09-12 12:16:25,2026-09-14 21:49:23
-77.33.226.178,45.8,low_and_slow,T1110.001,Brute Force: Password Guessing,False,True,,0,396,396,1,2,False,2026-09-03 19:56:38,2026-09-05 10:58:53
-200.182.246.134,25.8,anomalous_activity,,,False,True,,2,1344,0,1,0,False,2026-09-01 00:00:29,2026-09-14 23:45:21
+139.55.155.58,85.0,credential_stuffing,T1110.004,Brute Force: Credential Stuffing,True,True,user_enumeration,2,295,150,150,18,False,2026-09-12 13:48:23,2026-09-12 14:39:32
+23.15.60.57,85.0,user_enumeration,T1087,Account Discovery,True,True,user_enumeration,2,100,28,100,8,False,2026-09-03 11:49:39,2026-09-03 12:15:06
+58.132.40.209,85.0,credential_stuffing,T1110.004,Brute Force: Credential Stuffing,True,True,user_enumeration,2,293,150,150,16,False,2026-09-12 06:08:32,2026-09-12 06:59:00
+91.142.86.161,85.0,user_enumeration,T1087,Account Discovery,True,True,user_enumeration,2,100,24,100,5,False,2026-09-03 20:19:52,2026-09-03 20:43:57
+110.188.226.245,85.0,credential_stuffing,T1110.004,Brute Force: Credential Stuffing,True,True,user_enumeration,2,293,150,150,16,False,2026-09-12 23:59:58,2026-09-13 00:48:46
+77.52.224.197,85.0,credential_stuffing,T1110.004,Brute Force: Credential Stuffing,True,True,user_enumeration,2,294,150,149,17,False,2026-09-11 16:13:22,2026-09-11 17:02:38
+222.204.225.56,85.0,user_enumeration,T1087,Account Discovery,True,True,user_enumeration,2,100,22,100,5,False,2026-09-03 00:29:03,2026-09-03 00:53:31
+218.180.19.200,85.0,credential_stuffing,T1110.004,Brute Force: Credential Stuffing,True,True,user_enumeration,2,293,150,150,17,False,2026-09-11 22:34:37,2026-09-11 23:23:39
+195.148.149.132,85.0,credential_stuffing,T1110.004,Brute Force: Credential Stuffing,True,True,user_enumeration,2,292,150,150,17,False,2026-09-12 01:56:41,2026-09-12 02:45:20
+212.254.57.194,85.0,credential_stuffing,T1110.004,Brute Force: Credential Stuffing,True,True,user_enumeration,2,295,150,149,17,False,2026-09-11 06:33:53,2026-09-11 07:22:34
+23.97.144.131,85.0,credential_stuffing,T1110.004,Brute Force: Credential Stuffing,True,True,user_enumeration,2,296,150,150,17,False,2026-09-11 20:48:41,2026-09-11 21:37:34
+177.104.132.90,84.2,post_compromise,T1078,Valid Accounts,True,True,post_compromise,1,13,12,1,11,True,2026-09-11 14:09:51,2026-09-11 14:12:33
+61.11.192.116,84.2,post_compromise,T1078,Valid Accounts,True,True,post_compromise,1,13,12,1,12,True,2026-09-09 16:00:15,2026-09-09 16:03:09
+31.92.54.54,70.8,brute_force,T1110.001,Brute Force: Password Guessing,True,True,brute_force,1,725,725,1,157,False,2026-09-07 02:40:18,2026-09-07 03:04:13
+200.154.140.154,70.8,brute_force,T1110.001,Brute Force: Password Guessing,True,True,brute_force,1,527,527,1,148,False,2026-09-09 01:10:11,2026-09-09 01:27:48
+121.138.231.186,70.8,brute_force,T1110.001,Brute Force: Password Guessing,True,True,brute_force,1,783,783,1,156,False,2026-09-02 22:03:52,2026-09-02 22:29:59
+112.147.222.150,70.8,brute_force,T1110.001,Brute Force: Password Guessing,True,True,brute_force,1,640,640,1,152,False,2026-09-10 07:49:03,2026-09-10 08:10:14
+110.214.220.163,70.8,brute_force,T1110.001,Brute Force: Password Guessing,True,True,brute_force,1,591,591,1,151,False,2026-09-09 06:15:11,2026-09-09 06:35:05
+200.105.240.161,62.8,post_compromise,T1078,Valid Accounts,False,True,,0,19,16,8,2,True,2026-09-08 02:00:19,2026-09-08 04:22:48
+139.147.113.115,62.8,post_compromise,T1078,Valid Accounts,False,True,,0,19,16,8,2,True,2026-09-08 04:19:25,2026-09-08 06:22:07
+218.93.241.205,60.0,user_enumeration,T1087,Account Discovery,False,True,,2,100,26,100,3,False,2026-09-03 21:25:04,2026-09-03 23:18:11
+187.149.211.131,60.0,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,33,33,24,1,False,2026-09-05 00:07:24,2026-09-07 19:16:15
+200.105.240.191,60.0,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,31,31,26,1,False,2026-09-05 00:13:05,2026-09-07 19:33:43
+139.147.113.82,60.0,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,44,44,27,2,False,2026-09-05 00:15:25,2026-09-07 19:39:21
+58.231.251.196,60.0,user_enumeration,T1087,Account Discovery,False,True,,2,100,24,100,3,False,2026-09-03 07:04:37,2026-09-03 08:59:43
+212.6.212.104,60.0,user_enumeration,T1087,Account Discovery,False,True,,2,100,25,100,2,False,2026-09-03 03:28:56,2026-09-03 05:21:00
+139.147.113.195,59.3,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,29,29,19,2,False,2026-09-05 00:04:56,2026-09-07 19:39:38
+187.149.211.43,59.3,password_spraying,T1110.003,Brute Force: Password Spraying,False,True,,0,24,24,19,3,False,2026-09-05 06:03:49,2026-09-07 13:28:31
+222.13.8.177,59.2,post_compromise,T1078,Valid Accounts,False,True,,1,13,12,1,7,True,2026-09-05 15:18:56,2026-09-05 15:21:52
+177.52.157.30,45.8,low_and_slow,T1110.001,Brute Force: Password Guessing,False,True,,1,573,573,1,2,False,2026-09-02 03:24:56,2026-09-04 12:06:43
+77.211.39.130,45.8,low_and_slow,T1110.001,Brute Force: Password Guessing,False,True,,1,410,410,1,2,False,2026-09-05 18:50:33,2026-09-07 11:16:48
+190.94.190.2,45.8,low_and_slow,T1110.001,Brute Force: Password Guessing,False,True,,1,406,406,1,2,False,2026-09-03 13:30:40,2026-09-05 05:09:22
+212.86.98.6,45.8,low_and_slow,T1110.001,Brute Force: Password Guessing,False,True,,1,453,453,1,2,False,2026-09-03 05:37:58,2026-09-05 03:00:10
+110.180.91.216,45.8,low_and_slow,T1110.001,Brute Force: Password Guessing,False,True,,1,461,461,1,2,False,2026-09-04 03:48:24,2026-09-06 02:09:24
+77.245.152.250,45.8,low_and_slow,T1110.001,Brute Force: Password Guessing,False,True,,1,523,523,1,2,False,2026-09-09 08:46:49,2026-09-11 13:06:48
+200.182.246.134,25.8,anomalous_activity,,,False,True,,0,1344,0,1,0,False,2026-09-01 00:00:29,2026-09-14 23:45:21

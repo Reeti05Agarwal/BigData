@@ -1,7 +1,7 @@
 attack_type,ips,rules_detected,kmeans_detected,type_correct
 brute_force,5,1.0,1.0,1.0
 low_and_slow,6,0.0,1.0,1.0
-password_spraying,20,0.0,1.0,1.0
+password_spraying,20,0.0,0.25,0.25
 credential_stuffing,8,1.0,1.0,1.0
 user_enumeration,6,0.5,1.0,1.0
 post_compromise,2,0.0,1.0,1.0
