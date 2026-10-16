@@ -1,0 +1,4 @@
+method,tp,fp,fn,precision,recall,f1
+Threshold rules,16,2,31,0.889,0.34,0.492
+KMeans (MLlib),47,4,0,0.922,1.0,0.959
+Rules OR KMeans,47,4,0,0.922,1.0,0.959

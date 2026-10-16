@@ -1,0 +1,16 @@
+ip,pagerank,community,predicted_type,risk_score
+45.187.212.210,23.2036,588,credential_stuffing,85.0
+110.68.217.91,23.1142,588,credential_stuffing,85.0
+212.111.182.189,22.9248,588,credential_stuffing,85.0
+201.133.122.77,22.9066,588,credential_stuffing,85.0
+112.218.9.158,22.8465,588,credential_stuffing,85.0
+110.228.33.86,22.629,588,credential_stuffing,85.0
+37.88.146.149,22.4697,588,credential_stuffing,85.0
+112.22.10.120,22.2707,588,credential_stuffing,85.0
+218.160.54.144,8.8787,1105,user_enumeration,85.0
+212.233.134.28,8.8107,1105,user_enumeration,85.0
+37.248.114.130,8.6466,1105,user_enumeration,60.0
+23.15.60.57,8.4796,1105,user_enumeration,85.0
+177.141.3.215,8.4559,1105,user_enumeration,60.0
+185.75.11.56,8.4277,1105,user_enumeration,60.0
+195.39.131.204,2.7901,847,password_spraying,60.0
