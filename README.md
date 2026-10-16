@@ -57,7 +57,21 @@ You need Docker Desktop. Everything else, including Spark and Java, runs in cont
 .\run_all.ps1 -Stream    # plus the live Kafka -> Spark Streaming demo
 ```
 
-Or step by step:
+### On Arch Linux
+
+```bash
+sudo pacman -S --needed docker docker-compose docker-buildx
+sudo systemctl enable --now docker
+sudo usermod -aG docker $USER          # then log out and back in (or run: newgrp docker)
+sudo sysctl -w vm.max_map_count=262144 # Elasticsearch needs this on Linux
+bash run_all.sh                        # or: bash run_all.sh --stream
+```
+
+To keep the `vm.max_map_count` setting across reboots:
+`echo vm.max_map_count=262144 | sudo tee /etc/sysctl.d/99-elasticsearch.conf`.
+Containers write as root, so `run_all.sh` hands `output/` and `data/` back to your user at the end.
+
+Or step by step (the same commands work on Windows and Linux):
 
 ```powershell
 docker compose up -d kafka elasticsearch kibana neo4j
