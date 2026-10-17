@@ -6,7 +6,8 @@ against >= 3 accounts). This recovers bots that spread attempts too thin for per
 analysis, such as a password-spraying botnet.
 
 Graph model
-  (:IP {ip, risk_score, predicted_type, technique_id, rule_flag, ml_flag})
+  (:IP {ip, risk_score, predicted_type, technique_id, rule_flag, ml_flag, graph_flag,
+        community, pagerank, true_type, campaign, detected_by, color})
   (:User {name})   (:Host {name})
   (:IP)-[:ATTEMPTED {attempts, failed, success}]->(:User)
   (:IP)-[:TARGETED  {attempts, success}]->(:Host)
@@ -19,7 +20,10 @@ import pandas as pd
 from neo4j import GraphDatabase
 
 import config
-from plots import ATTACK_ORDER, style
+from neodash_dashboard import save_dashboard
+from plots import ATTACK_ORDER, style, type_color
+
+UNFLAGGED_COLOR, USER_COLOR, HOST_COLOR, GRAPH_ONLY_COLOR = "#c3c2b7", "#52514e", "#2a78d6", "#e34948"
 
 BATCH = 5000
 
@@ -33,6 +37,10 @@ def main():
     ips = pd.read_csv(config.OUT / "ip_risk.csv")
     ips = ips[["ip", "risk_score", "predicted_type", "technique_id", "rule_flag", "ml_flag", "n_events",
                "distinct_users", "cluster"]]
+    truth = pd.read_csv(config.LABELS_CSV)[["ip", "attack_type", "campaign"]].rename(
+        columns={"attack_type": "true_type"})
+    ips = ips.merge(truth, on="ip", how="left")
+    ips["color"] = [type_color(t) if isinstance(t, str) else UNFLAGGED_COLOR for t in ips["predicted_type"]]
     ips = ips.astype(object).where(ips.notna(), None)
     eu = pd.read_csv(config.OUT / "edges_ip_user.csv").fillna({"user": ""})
     eh = pd.read_csv(config.OUT / "edges_ip_host.csv")
@@ -54,6 +62,8 @@ def main():
                       MATCH (i:IP {ip: r.ip}) MERGE (h:Host {name: r.host})
                       MERGE (i)-[e:TARGETED]->(h) SET e.attempts = r.attempts, e.success = r.success""",
                 eh.to_dict("records"))
+        s.run("MATCH (u:User) SET u.color = $c", c=USER_COLOR).consume()
+        s.run("MATCH (h:Host) SET h.color = $c", c=HOST_COLOR).consume()
         print(f"Loaded {len(ips):,} IPs, {len(eu):,} IP-User edges, {len(eh):,} IP-Host edges")
 
         # Community detection over the IP-User bipartite graph: IPs sharing target accounts cluster together
@@ -78,6 +88,16 @@ def main():
             SET x.graph_flag = true
             RETURN x.ip AS ip, x.community AS community, users, failed""").data()
         print(f"Graph-assisted detection flagged {len(graph_hits)} IPs missed by rules and KMeans")
+        s.run("""
+            MATCH (i:IP)
+            SET i.detected_by = CASE
+                    WHEN i.rule_flag AND i.ml_flag THEN 'Rules + KMeans'
+                    WHEN i.ml_flag THEN 'KMeans only'
+                    WHEN i.rule_flag THEN 'Rules only'
+                    WHEN i.graph_flag THEN 'Graph only'
+                    ELSE 'Not detected' END,
+                i.color = CASE WHEN i.graph_flag THEN $graph_color ELSE i.color END""",
+              graph_color=GRAPH_ONLY_COLOR).consume()
 
         campaigns = s.run("""
             MATCH (i:IP) WHERE i.rule_flag OR i.ml_flag OR i.graph_flag
@@ -107,6 +127,8 @@ def main():
             ORDER BY i.pagerank DESC LIMIT 15""").data()
         communities = s.run("MATCH (i:IP) RETURN i.ip AS ip, i.community AS community, "
                             "i.pagerank AS pagerank, i.graph_flag AS graph_flag").data()
+        save_dashboard(s)
+        print("NeoDash dashboard saved: open http://localhost:5005")
     driver.close()
 
     camp = pd.DataFrame(campaigns)

@@ -8,7 +8,7 @@ job() {
     docker compose run --rm --service-ports spark python "src/$@"
 }
 
-docker compose up -d kafka elasticsearch kibana neo4j
+docker compose up -d kafka elasticsearch kibana neo4j neodash
 docker compose build spark
 
 job 01_generate_data.py
@@ -18,6 +18,7 @@ echo "Waiting for Neo4j (GDS plugin downloads on first start)..."
 sleep 30
 job 06_neo4j_graph.py
 job 07_elastic_load.py
+job 09_kibana_dashboard.py
 job 08_benchmark.py
 
 if [[ "${1:-}" == "--stream" ]]; then
@@ -32,4 +33,5 @@ fi
 # Containers run as root; hand the generated files back to you
 docker compose run --rm spark chown -R "$(id -u):$(id -g)" /app/output /app/data
 
-echo -e "\nDone. Figures: output/figures   Kibana: http://localhost:5601   Neo4j: http://localhost:7474 (neo4j / bigdata123)"
+echo -e "\nDone. Figures: output/figures   Kibana: http://localhost:5601   Neo4j: http://localhost:7474 (neo4j / bigdata123)   NeoDash: http://localhost:5005
+Kibana dashboard: http://localhost:5601/app/dashboards#/view/ssh-attack-soc-dashboard"

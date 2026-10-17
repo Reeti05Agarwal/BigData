@@ -57,6 +57,16 @@ def main():
     if comm_path.exists():
         risk = risk.merge(pd.read_csv(comm_path), on="ip", how="left")
     risk = risk.merge(labels, on="ip", how="left").rename(columns={"attack_type": "true_type"})
+    if "graph_flag" not in risk:
+        risk["graph_flag"] = False
+    risk["graph_flag"] = risk["graph_flag"].fillna(False).astype(bool)
+    graph = risk["graph_flag"]
+    rule, ml = risk["rule_flag"].astype(bool), risk["ml_flag"].astype(bool)
+    risk["detected_by"] = "Not detected"
+    risk.loc[graph, "detected_by"] = "Graph only"
+    risk.loc[rule & ~ml, "detected_by"] = "Rules only"
+    risk.loc[ml & ~rule, "detected_by"] = "KMeans only"
+    risk.loc[rule & ml, "detected_by"] = "Rules + KMeans"
     for col in ("first_seen", "last_seen"):
         risk[col] = pd.to_datetime(risk[col]).dt.strftime("%Y-%m-%dT%H:%M:%SZ")
     bulk(es, "auth-ip-risk", risk, id_col="ip")

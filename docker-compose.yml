@@ -42,6 +42,22 @@ services:
       NEO4J_dbms_security_procedures_unrestricted: gds.*
     volumes: [neo4jdata:/data]
 
+  # Neo4j dashboards: opens the dashboard that 06_neo4j_graph.py stores in the database
+  neodash:
+    image: neo4jlabs/neodash:2.4.8
+    ports: ["5005:5005"]
+    environment:
+      standalone: "true"
+      standaloneProtocol: neo4j
+      standaloneHost: localhost
+      standalonePort: "7687"
+      standaloneDatabase: neo4j
+      standaloneDashboardName: SSH Attack Graph - Campaign Analysis
+      standaloneDashboardDatabase: neo4j
+      standaloneUsername: neo4j
+      standalonePassword: bigdata123
+    depends_on: [neo4j]
+
   # PySpark jobs run here: docker compose run --rm spark python src/04_batch_analytics.py
   spark:
     build: {context: ., dockerfile: docker/spark/Dockerfile}

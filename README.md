@@ -23,7 +23,7 @@ auth.log ──► Kafka topic "auth-logs" ──► Spark Structured Streaming 
 | Parsing, features, rules, ML, evaluation | Spark SQL + MLlib | [src/04_batch_analytics.py](src/04_batch_analytics.py), [src/pipeline.py](src/pipeline.py) |
 | Time-series anomaly detection | statsmodels Holt-Winters | [src/05_forecast.py](src/05_forecast.py) |
 | Attack graph, campaigns | Neo4j + GDS | [src/06_neo4j_graph.py](src/06_neo4j_graph.py) |
-| SOC dashboard | Elasticsearch + Kibana | [src/07_elastic_load.py](src/07_elastic_load.py) |
+| SOC dashboard | Elasticsearch + Kibana | [src/07_elastic_load.py](src/07_elastic_load.py), [src/09_kibana_dashboard.py](src/09_kibana_dashboard.py) |
 | Scalability (1x / 10x / 50x / 100x) | Spark | [src/08_benchmark.py](src/08_benchmark.py) |
 
 ## Attack types and ground truth
@@ -110,15 +110,34 @@ The Spark UI at http://localhost:4040 shows jobs, stages and the DAG while a job
 
 ## Kibana dashboard (http://localhost:5601)
 
-`07_elastic_load.py` creates the data views. Set the time picker to **1 Sep 2026 – 1 Oct 2026**, then build these
-panels with Lens (Dashboards → Create → Lens):
+`07_elastic_load.py` loads the indices and data views, and `09_kibana_dashboard.py` builds the
+**SSH Attack Detection - SOC Dashboard** automatically (Vega-Lite panels that query Elasticsearch):
 
-1. **Failed logins over time**: `auth-events`, date histogram on `@timestamp`, filter `event : "FAILED"`, break down by `attack_type`
-2. **Attacks by MITRE technique**: `auth-ip-risk`, filter `ml_flag : true or rule_flag : true`, donut on `technique_name`
-3. **Top attacker IPs**: `auth-ip-risk`, table of `ip`, `risk_score`, `predicted_type`, `technique_id`, `community`, sorted by risk
-4. **Rules vs. ML**: `auth-ip-risk`, bar of count split by `rule_flag` and `ml_flag`
-5. **Hourly anomalies**: `auth-hourly`, line of `failed` and `expected`, with `anomaly : true` as a filter
-6. **Live alerts** (while streaming): `auth-stream-alerts`, table by `@timestamp`, `ip`, `rule_type`, `technique_id`
+1. **Failed logins over time**, stacked by ground-truth attack type
+2. **Hourly failed logins vs. Holt-Winters baseline**, anomalous hours in red
+3. **Top 15 IPs by risk score**, coloured by predicted attack
+4. **Flagged IPs by MITRE ATT&CK technique** (donut)
+5. **Which method caught each attack type**: rules, KMeans, both, or graph only
+
+Open http://localhost:5601/app/dashboards#/view/ssh-attack-soc-dashboard. The dashboard stores its time range
+(1–16 Sep 2026). Rebuild it any time with `docker compose run --rm spark python src/09_kibana_dashboard.py`.
+If the import fails, import `output/kibana_dashboard.ndjson` under Stack Management → Saved objects → Import.
+
+## Neo4j dashboard (NeoDash, http://localhost:5005)
+
+`06_neo4j_graph.py` saves a NeoDash dashboard into Neo4j and the `neodash` container opens it
+automatically. Every panel is a live Cypher query with no hard-coded IPs or community ids, so it always
+matches the graph that was just generated. Nodes are coloured by predicted attack type (red = found only
+by graph analysis, dark grey = user accounts, blue = hosts).
+
+- **Campaign overview:** flagged IPs, number of campaigns, targeted accounts, graph-only detections,
+  attacker IPs per community, MITRE technique pie, multi-stage links, PageRank table
+- **Attack graphs:** largest multi-stage campaign, largest campaign community, lateral movement,
+  most attacked accounts
+- **Detection quality:** detection method per attack type, false positives, attackers still missed
+
+If NeoDash shows a connect screen, connect to `neo4j://localhost:7687` as `neo4j` / `bigdata123`, then
+choose Load → Load from Neo4j → "SSH Attack Graph - Campaign Analysis".
 
 ## Neo4j queries (http://localhost:7474, neo4j / bigdata123)
 

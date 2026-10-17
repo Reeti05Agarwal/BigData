@@ -8,7 +8,7 @@ function Job($script, $jobArgs = "") {
     if ($LASTEXITCODE -ne 0) { throw "$script failed" }
 }
 
-docker compose up -d kafka elasticsearch kibana neo4j
+docker compose up -d kafka elasticsearch kibana neo4j neodash
 docker compose build spark
 
 Job "01_generate_data.py"
@@ -18,6 +18,7 @@ Write-Host "Waiting for Neo4j (GDS plugin downloads on first start)..."
 Start-Sleep -Seconds 30
 Job "06_neo4j_graph.py"
 Job "07_elastic_load.py"
+Job "09_kibana_dashboard.py"
 Job "08_benchmark.py"
 
 if ($Stream) {
@@ -27,4 +28,5 @@ if ($Stream) {
     docker compose run --rm spark python src/02_kafka_producer.py --rate 2000
 }
 
-Write-Host "`nDone. Figures: output\figures   Kibana: http://localhost:5601   Neo4j: http://localhost:7474 (neo4j / bigdata123)"
+Write-Host "`nDone. Figures: output\figures   Kibana: http://localhost:5601   Neo4j: http://localhost:7474 (neo4j / bigdata123)   NeoDash: http://localhost:5005
+Kibana dashboard: http://localhost:5601/app/dashboards#/view/ssh-attack-soc-dashboard"
